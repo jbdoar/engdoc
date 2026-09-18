@@ -1,0 +1,97 @@
+#+TITLE: Project
+#+STARTUP: overview
+#+TODO: TODO NEXT WAITING | DONE CANCELLED
+#+PROPERTY: SOURCE_ALL BUY ON-HAND MAKE PRINT
+#+COLUMNS: %ITEM(Part) %TODO %QTY %PN %MPN %MFR %VENDOR %VENDOR_PN %SOURCE %COST
+
+# PURPOSE
+# This document is the central planning and execution record for an
+# engineering project. It maintains the bill of materials, tracks work,
+# assigns responsibilities, and records scheduling information.
+#
+# SCOPE
+# Covers component procurement, fabrication, assembly, integration,
+# testing, documentation, and delivery.
+#
+# CONVENTIONS
+# - Headings tagged :BOM: represent parts or assemblies.
+# - BOM hierarchy follows the Org heading hierarchy.
+# - QTY is the quantity required per parent assembly.
+# - PN is the internal part number; MPN is the manufacturer part number.
+# - SOURCE identifies how a part is obtained.
+# - COST is the unit cost.
+# - TODO headings represent actionable work.
+# - Assign owners using tags such as :@name:.
+# - Use SCHEDULED and DEADLINE for planning.
+# - Keep component-specific tasks beneath the relevant component.
+#
+# EXPORTS
+# BOM:      bom.xlsx
+# Schedule: schedule.xlsx
+# Agenda:   agenda.html
+#
+# EDITING
+# C-c C-x C-c : Enter Org column view.
+# q           : Exit column view.
+#
+# Replace the placeholder headings and properties below.
+
+* Project Information
+
+Project name:
+Project number:
+Revision:
+Project manager:
+Customer:
+
+** Scope
+
+Describe the system and the work covered by this project.
+
+** Milestones
+
+* Bill of Materials
+
+** System Assembly                                              :BOM:
+:PROPERTIES:
+:QTY: 1
+:PN:
+:END:
+
+*** Component or Subassembly                                     :BOM:
+:PROPERTIES:
+:QTY: 1
+:PN:
+:MPN:
+:MFR:
+:VENDOR:
+:VENDOR_PN:
+:SOURCE:
+:COST:
+:URL:
+:END:
+
+**** TODO Specify component.
+
+* System Integration
+
+** TODO Assembly
+
+** TODO Alignment
+
+** TODO Testing
+
+* Logistics / Administrative
+
+** TODO Documentation
+
+** TODO Shipment
+
+** TODO Installation
+
+** TODO Training
+
+# Local Variables:
+# org-use-property-inheritance: nil
+# yas-indent-line: nil
+# End:
