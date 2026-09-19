@@ -1,0 +1,176 @@
+#+TITLE: System Requirements
+#+SUBTITLE: Requirements Specification
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:t
+
+# ======================================================================
+# REQUIREMENTS DOCUMENT — USER GUIDE
+# ======================================================================
+#
+# PURPOSE
+#   Define the system requirements, their verification methods, and
+#   objective acceptance criteria.
+#
+#   This document is the authoritative source for the requirements
+#   register and the generated FAT/SAT checklists.
+#
+# GETTING STARTED
+#   1. Replace the document title with the project/system name.
+#   2. Organize requirements under descriptive category headings.
+#   3. Create one heading per requirement.
+#   4. Complete the properties and write the requirement statement
+#      beneath the property drawer.
+#   5. Replace or delete the example requirements below.
+#
+# REQUIREMENT FORMAT
+#   ** Descriptive requirement title
+#   :PROPERTIES:
+#   :CUSTOM_ID: REQ-SYS-001
+#   :VERIFY_METHOD: TEST
+#   :VERIFY_STAGE: FAT SAT
+#   :ACCEPTANCE_CRITERIA: Startup completes within 30 seconds.
+#   :END:
+#
+#   The system shall complete startup within 30 seconds.
+#
+# PROPERTIES
+#   CUSTOM_ID
+#     Unique requirement identifier beginning with REQ-.
+#     Example: REQ-SYS-001.
+#     Duplicate IDs, invalid IDs, and missing statements cause
+#     validation to fail.
+#
+#   VERIFY_METHOD
+#     How compliance will be established:
+#       TEST           Measurement or functional testing.
+#       INSPECTION     Visual or physical examination.
+#       ANALYSIS       Calculation or engineering analysis.
+#       DEMONSTRATION  Observation of system operation.
+#
+#   VERIFY_STAGE
+#     Where the requirement will be verified:
+#       FAT      Factory Acceptance Test.
+#       SAT      Site Acceptance Test.
+#       FAT SAT  Both factory and site.
+#       NONE     Deliberately excluded from both checklists.
+#
+#     Missing stages produce a warning and are excluded from both
+#     checklists. Unrecognized stages cause validation to fail.
+#
+#   ACCEPTANCE_CRITERIA
+#     State the objective conditions required for acceptance.
+#     Include measurable limits, tolerances, or references where
+#     applicable. Missing criteria produce a warning.
+#
+# WRITING REQUIREMENTS
+#   - State one independently verifiable requirement per heading.
+#   - Use clear, unambiguous language.
+#   - Prefer measurable acceptance criteria over subjective wording.
+#   - Keep requirement IDs stable once referenced by other documents.
+#   - Use category headings to organize requirements by subsystem
+#     or function.
+#
+# EXPORT
+#   Run M-x engdoc-export to generate:
+#
+#     exports/requirements.pdf   Formatted requirements document.
+#     exports/requirements.xlsx  Requirements register.
+#     exports/fat.xlsx           Factory acceptance checklist.
+#     exports/sat.xlsx           Site acceptance checklist.
+#
+#   Validation runs before requirements artifacts are generated.
+#   Fatal validation errors stop the requirements export.
+#   Warnings identify incomplete information but permit export.
+#
+# IMPORTANT
+#   Generated checklists are blank templates, not execution records.
+#   Re-exporting overwrites them. Save completed FAT/SAT records
+#   separately.
+#
+# ======================================================================
+
+
+* Document Information
+
+| Field    | Value |
+|----------+-------|
+| Project  |       |
+| Revision | A     |
+| Date     |       |
+| Author   |       |
+
+* Introduction
+
+** Purpose
+
+Describe the purpose of this requirements specification.
+
+** Scope
+
+Define the system and its boundaries.
+
+* Functional Requirements
+
+** System startup
+:PROPERTIES:
+:CUSTOM_ID: REQ-SYS-001
+:VERIFY_METHOD: TEST
+:VERIFY_STAGE: FAT
+:ACCEPTANCE_CRITERIA: Startup completes within 30 seconds.
+:END:
+
+The system shall complete its startup sequence within 30 seconds.
+
+** Installation verification
+:PROPERTIES:
+:CUSTOM_ID: REQ-INST-001
+:VERIFY_METHOD: INSPECTION
+:VERIFY_STAGE: SAT
+:ACCEPTANCE_CRITERIA: All installation connections match the approved drawings.
+:END:
+
+The installed system shall conform to the approved installation drawings.
+
+** Operational performance
+:PROPERTIES:
+:CUSTOM_ID: REQ-PERF-001
+:VERIFY_METHOD: TEST
+:VERIFY_STAGE: FAT SAT
+:ACCEPTANCE_CRITERIA: Measured performance meets the specified limits.
+:END:
+
+The system shall meet its specified performance limits.
+
+
+** System operation
+:PROPERTIES:
+:CUSTOM_ID: REQ-SYS-002
+:VERIFY_METHOD: TEST
+:VERIFY_STAGE: FAT SAT
+:ACCEPTANCE_CRITERIA: System completes startup within 30 seconds.
+:END:
+
+The system shall complete startup within 30 seconds.
+
+* Performance Requirements
+
+** Measurement performance
+:PROPERTIES:
+:CUSTOM_ID: REQ-PERF-002
+:VERIFY_METHOD: TEST
+:VERIFY_STAGE: NONE
+:END:
+
+The system shall ...
+
+* Interface Requirements
+
+* Environmental Requirements
+
+* Safety Requirements
+
+* Verification
+
+Define the verification approach and acceptance criteria.
+
+* References

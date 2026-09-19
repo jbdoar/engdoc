@@ -40,10 +40,20 @@ When nil, use `python-shell-interpreter'."
   "Directory containing engdoc document definitions and templates.")
 
 (defvar engdoc-document-types
-  '((project
+  '(
+    (project
      :filename "project.org"
      :description "Project planning, BOM, schedule, and agenda."
-     :template "project/template.org"))
+     :template "project/template.org"
+     :module "engdoc-project"
+     :exporter engdoc-project-export)
+    (requirements
+     :filename "requirements.org"
+     :description "System requirements specification"
+     :template "requirements/template.org"
+     :module "engdoc-requirements"
+     :exporter engdoc-requirements-export)
+    )
   "Registered engdoc document types.")
 
 (defun engdoc--document-get (type property)
@@ -102,6 +112,81 @@ When nil, use `python-shell-interpreter'."
   (engdoc-new-document 'project directory)
 
   (message "Initialized project: %s" directory))
+
+(defun engdoc-export (&optional directory)
+  "Export all registered documents found in DIRECTORY."
+  (interactive
+   (list (read-directory-name
+          "Export documents in directory: "
+          default-directory)))
+
+  (let ((directory (file-name-as-directory
+                    (expand-file-name
+                     (or directory default-directory))))
+        (exported nil)
+        (failed nil))
+
+    (dolist (entry engdoc-document-types)
+      (let* ((type (car entry))
+             (filename (plist-get (cdr entry) :filename))
+             (module (plist-get (cdr entry) :module))
+             (exporter (plist-get (cdr entry) :exporter))
+             (file (expand-file-name filename directory)))
+
+        (when (file-exists-p file)
+          (condition-case err
+              (progn
+                (when module
+                  (let ((load-path
+                         (cons
+                          (expand-file-name
+                           (format "documents/%s" type)
+                           engdoc-directory)
+                          load-path)))
+                    (require (intern module))))
+
+                (unless (and exporter (fboundp exporter))
+                  (error "Exporter unavailable: %s" exporter))
+
+                (funcall exporter file)
+                (push type exported))
+
+            (error
+             (push (cons type (error-message-string err))
+                   failed))))))
+
+    (setq exported (nreverse exported)
+          failed (nreverse failed))
+
+    (if failed
+        (progn
+          (dolist (failure failed)
+            (message "Export failed [%s]: %s"
+                     (car failure)
+                     (cdr failure)))
+          (user-error
+           "Exported %d document(s); %d failed. See *Messages*"
+           (length exported)
+           (length failed)))
+      (message "Exported %d document(s): %s"
+               (length exported)
+               (if exported
+                   (mapconcat #'symbol-name exported ", ")
+                 "none found")))))
+
+(add-to-list 'load-path
+             (expand-file-name "documents/project" engdoc-directory))
+
+
+(defun engdoc-export-directory (file)
+  "Return the exports directory for FILE, creating it if necessary."
+  (let ((directory
+         (expand-file-name
+          "exports"
+          (file-name-directory (expand-file-name file)))))
+    (make-directory directory t)
+    directory))
+
 
 (provide 'engdoc)
 
