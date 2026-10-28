@@ -15,6 +15,7 @@ from export_requirements import (
     parse_stages,
     validate_requirements,
 )
+from engdoc_metadata import apply_workbook_metadata, load_and_validate_metadata
 
 
 HEADERS = [
@@ -32,7 +33,7 @@ HEADERS = [
 WIDTHS = [22, 30, 65, 60, 20, 16, 45, 30, 45]
 
 
-def export_checklist(requirements, stage, output):
+def export_checklist(requirements, stage, output, metadata=None):
     """Export requirements applicable to STAGE as an XLSX checklist."""
 
     selected = [
@@ -131,6 +132,9 @@ def export_checklist(requirements, stage, output):
 
     ws.print_title_rows = "1:1"
 
+    if metadata:
+        apply_workbook_metadata(wb, metadata)
+
     output.parent.mkdir(parents=True, exist_ok=True)
     wb.save(output)
 
@@ -160,6 +164,7 @@ def main():
 
     args = parser.parse_args()
 
+    metadata, _warnings = load_and_validate_metadata(args.input)
     requirements = parse_requirements(args.input)
     validate_requirements(requirements)
 
@@ -167,12 +172,14 @@ def main():
         requirements,
         "FAT",
         args.output_dir / "fat.xlsx",
+        metadata,
     )
 
     export_checklist(
         requirements,
         "SAT",
         args.output_dir / "sat.xlsx",
+        metadata,
     )
 
 

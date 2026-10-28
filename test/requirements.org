@@ -1,5 +1,13 @@
 #+TITLE: System Requirements
 #+SUBTITLE: Requirements Specification
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-REQ
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS: ENG-0001-PROJECT ENG-0001-DESIGN ENG-0001-ATP ENG-0001-CAL ENG-0001-RISK
 #+STARTUP: overview
 #+OPTIONS: toc:2 num:t
 
@@ -92,12 +100,8 @@
 
 * Document Information
 
-| Field    | Value |
-|----------+-------|
-| Project  |       |
-| Revision | A     |
-| Date     |       |
-| Author   |       |
+The controlled document identity is defined by the =#+ENGDOC_*= keywords at
+the top of this file.
 
 * Introduction
 

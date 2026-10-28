@@ -18,11 +18,8 @@
     (setq file (expand-file-name file))
 
     (let* ((export-dir (engdoc-export-directory file))
-           (tex-file (expand-file-name "requirements.tex" export-dir))
-           (pdf-file (expand-file-name "requirements.pdf" export-dir))
-           (xlsx-file (expand-file-name "requirements.xlsx" export-dir))
-	   (fat-file (expand-file-name "fat.xlsx" export-dir))
-	   (sat-file (expand-file-name "sat.xlsx" export-dir))
+	   (outputs '("requirements.tex" "requirements.pdf"
+	              "requirements.xlsx" "fat.xlsx" "sat.xlsx"))
 	   (checklist-script
 	    (expand-file-name
 	     "export_checklists.py"
@@ -30,9 +27,7 @@
 
            (script (expand-file-name
                     "export_requirements.py"
-                    engdoc-requirements-directory))
-           (python (engdoc-python))
-           (log-buffer (get-buffer-create "*engdoc-export*")))
+                    engdoc-requirements-directory)))
 
       (unless (file-exists-p checklist-script)
 	(error "Checklist exporter missing: %s" checklist-script))
@@ -42,70 +37,23 @@
 	(save-buffer))
 
       ;; Validate before generating any artifacts.
-      (with-current-buffer log-buffer
-	(goto-char (point-max))
-	(insert "\nValidating requirements\n"))
+      (engdoc-run-python script (list "--validate" file)
+                         "Validating requirements")
 
-      (let ((status
-	     (process-file python nil log-buffer nil
-			   script "--validate" file)))
+      (engdoc-with-export-transaction
+       export-dir outputs
+       (lambda (staging-directory)
+         (let ((xlsx-file
+                (expand-file-name "requirements.xlsx" staging-directory)))
+           ;; Org and LaTeX outputs.
+           (engdoc-export-org-pdf file staging-directory "requirements")
 
-	(with-current-buffer log-buffer
-	  (goto-char (point-max))
-	  (insert (format "Input file: %s\n" file)))
-
-	(unless (and (integerp status) (zerop status))
-	  (display-buffer log-buffer)
-	  (error
-	   "Requirements validation failed (status %s); see *engdoc-export*"
-	   status)))
-      
-      ;; Generate LaTeX.
-      (with-current-buffer (find-file-noselect file)
-        (org-export-to-file 'latex tex-file))
-
-      ;; Compile PDF.
-      (let ((default-directory export-dir))
-        (org-latex-compile tex-file))
-
-      (unless (file-exists-p pdf-file)
-        (error "Requirements PDF missing: %s" pdf-file))
-
-      ;; Generate XLSX synchronously.
-      (with-current-buffer log-buffer
-        (goto-char (point-max))
-        (insert "\nExporting requirements register\n"))
-
-      (let ((status
-             (process-file python nil log-buffer nil
-                           script file xlsx-file)))
-
-        (unless (and (integerp status) (zerop status))
-          (display-buffer log-buffer)
-          (error
-           "Requirements XLSX export failed (status %s); see *engdoc-export*"
-           status)))
-
-      (unless (file-exists-p xlsx-file)
-        (error "Requirements XLSX missing: %s" xlsx-file))
-
-      ;; Generate FAT and SAT checklists.
-      (with-current-buffer log-buffer
-	(goto-char (point-max))
-	(insert "\nExporting FAT/SAT checklists\n"))
-
-      (let ((status
-	     (process-file python nil log-buffer nil
-			   checklist-script file export-dir)))
-	(unless (and (integerp status) (zerop status))
-	  (display-buffer log-buffer)
-	  (error
-	   "Checklist export failed (status %s); see *engdoc-export*"
-	   status)))
-
-      (dolist (output (list fat-file sat-file))
-	(unless (file-exists-p output)
-	  (error "Expected checklist missing: %s" output)))
+           ;; Spreadsheet outputs.
+           (engdoc-run-python script (list file xlsx-file)
+                              "Exporting requirements register")
+           (engdoc-run-python checklist-script
+                              (list file staging-directory)
+                              "Exporting FAT/SAT checklists"))))
       
       (message "Requirements export complete: %s" export-dir))))
 

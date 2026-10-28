@@ -1,0 +1,65 @@
+#+TITLE: Calibration Program
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-CAL
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS: ENG-0001-PROJECT ENG-0001-REQ ENG-0001-DESIGN ENG-0001-ATP ENG-0001-RISK
+#+STARTUP: overview
+
+* Reference Standards
+
+** Reference standard
+:PROPERTIES:
+:CUSTOM_ID: EQ-STD-001
+:STATUS: ACTIVE
+:OWNER: Quality Engineering
+:MANUFACTURER: Standards Laboratory
+:MODEL: REF-100
+:SERIAL: REF-001
+:RANGE: Reference outputs
+:ACCURACY: Minimum 4:1 test uncertainty ratio
+:INTERVAL_DAYS: 365
+:CALIBRATION_DUE: 2099-12-31
+:REFERENCE_STANDARDS:
+:END:
+
+Maintain traceability through an accredited laboratory.
+
+* Measuring Equipment
+
+** Digital multimeter
+:PROPERTIES:
+:CUSTOM_ID: EQ-DMM-001
+:STATUS: ACTIVE
+:OWNER: Test Engineering
+:MANUFACTURER: Example Instruments
+:MODEL: DMM-1000
+:SERIAL: DMM-001
+:RANGE: 0 to 1000 V
+:ACCURACY: +/- 0.05 percent
+:INTERVAL_DAYS: 365
+:CALIBRATION_DUE: 2099-12-31
+:REFERENCE_STANDARDS: EQ-STD-001
+:END:
+
+Verify all required electrical ranges against the reference standard.
+
+** Dimensional instrument
+:PROPERTIES:
+:CUSTOM_ID: EQ-DIM-001
+:STATUS: ACTIVE
+:OWNER: Mechanical Engineering
+:MANUFACTURER: Example Metrology
+:MODEL: DIM-100
+:SERIAL: DIM-001
+:RANGE: 0 to 150 mm
+:ACCURACY: +/- 0.02 mm
+:INTERVAL_DAYS: 365
+:CALIBRATION_DUE: 2099-12-31
+:REFERENCE_STANDARDS: EQ-STD-001
+:END:
+
+Verify representative points across the measurement range.

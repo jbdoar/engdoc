@@ -4,11 +4,16 @@
 
 import argparse
 import re
+import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from engdoc_org import read_headings
+from engdoc_metadata import apply_workbook_metadata, load_and_validate_metadata
 
 
 TODO_STATES = (
@@ -16,15 +21,8 @@ TODO_STATES = (
     r"NEXT|WAITING|DONE|CANCELLED"
 )
 
-HEADING_RE = re.compile(
-    rf"^(?P<stars>\*+)\s+"
-    rf"(?:(?P<todo>{TODO_STATES})\s+)?"
-    rf"(?P<title>.*?)"
-    rf"(?:\s+:(?P<tags>[^:]+(?::[^:]+)*):)?\s*$"
-)
-
 DATE_RE = re.compile(
-    r"<(\d{4}-\d{2}-\d{2})(?:\s+[^>]*)?>"
+    r"(?:<|\[)(\d{4}-\d{2}-\d{2})(?:\s+[^]>]*)?(?:>|\])"
 )
 
 
@@ -41,27 +39,11 @@ def parse_date(text):
 
 
 def parse_project(path):
-    lines = Path(path).read_text(
-        encoding="utf-8"
-    ).splitlines()
-
     entries = []
+    states = TODO_STATES.split("|")
 
-    for i, line in enumerate(lines):
-        match = HEADING_RE.match(line)
-
-        if not match:
-            continue
-
-        level = len(match.group("stars"))
-        title = match.group("title").strip()
-        todo = match.group("todo") or ""
-
-        tags = [
-            tag
-            for tag in (match.group("tags") or "").split(":")
-            if tag
-        ]
+    for heading in read_headings(path, states):
+        tags = heading.tags
 
         owners = [
             tag[1:]
@@ -69,33 +51,13 @@ def parse_project(path):
             if tag.startswith("@") and len(tag) > 1
         ]
 
-        scheduled = None
-        deadline = None
-
-        j = i + 1
-
-        while (
-            j < len(lines)
-            and not HEADING_RE.match(lines[j])
-        ):
-            text = lines[j].strip()
-
-            if "SCHEDULED:" in text:
-                scheduled = parse_date(
-                    text.split("SCHEDULED:", 1)[1]
-                )
-
-            if "DEADLINE:" in text:
-                deadline = parse_date(
-                    text.split("DEADLINE:", 1)[1]
-                )
-
-            j += 1
+        scheduled = parse_date(heading.planning.get("SCHEDULED", ""))
+        deadline = parse_date(heading.planning.get("DEADLINE", ""))
 
         entries.append({
-            "LEVEL": level,
-            "TASK": title,
-            "TODO": todo,
+            "LEVEL": heading.level,
+            "TASK": heading.title,
+            "TODO": heading.todo,
             "TAGS": tags,
             "OWNERS": owners,
             "START": scheduled,
@@ -141,7 +103,7 @@ def parse_project(path):
     ]
 
 
-def write_gantt(entries, path):
+def write_gantt(entries, path, metadata=None):
     dated = [
         entry
         for entry in entries
@@ -389,6 +351,9 @@ def write_gantt(entries, path):
             ).column_letter
         ].width = 4
 
+    if metadata:
+        apply_workbook_metadata(wb, metadata)
+
     try:
         wb.save(path)
 
@@ -415,9 +380,11 @@ def main():
     args = parser.parse_args()
 
     entries = parse_project(args.input)
+    metadata, _warnings = load_and_validate_metadata(args.input)
     write_gantt(
         entries,
         Path(args.output),
+        metadata,
     )
 
 

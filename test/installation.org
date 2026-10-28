@@ -1,0 +1,47 @@
+#+TITLE: Installation and Commissioning Plan
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-INSTALL
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS: ENG-0001-PROJECT ENG-0001-REQ ENG-0001-DESIGN ENG-0001-ATP ENG-0001-CAL ENG-0001-RISK
+#+STARTUP: overview
+
+* Site Readiness
+
+** Verify site readiness
+:PROPERTIES:
+:CUSTOM_ID: INS-SITE-001
+:STATUS: READY
+:OWNER: Field Engineering
+:PHASE: SITE
+:REQUIREMENTS: REQ-INST-001
+:DESIGN_ITEMS: DES-MECH-001
+:HAZARDS: HAZ-PERF-001
+:ACCEPTANCE_PROCEDURES: ATP-PERF-001
+:EQUIPMENT: EQ-DIM-001
+:ACCEPTANCE_CRITERIA: Site access, utilities, environment, and interfaces meet approved criteria.
+:END:
+
+Inspect site conditions and retain readiness evidence before installation.
+
+* Commissioning
+
+** Execute controlled startup
+:PROPERTIES:
+:CUSTOM_ID: INS-COMM-001
+:STATUS: DRAFT
+:OWNER: Commissioning Engineering
+:PHASE: COMMISSIONING
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:HAZARDS: HAZ-MECH-001
+:ACCEPTANCE_PROCEDURES: ATP-SYS-001
+:EQUIPMENT: EQ-DMM-001
+:ACCEPTANCE_CRITERIA: Startup completes without faults and safeguards remain effective.
+:END:
+
+Execute the approved startup sequence and record configuration, observations,
+evidence, punch items, and dispositions.

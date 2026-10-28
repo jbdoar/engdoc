@@ -1,0 +1,48 @@
+#+TITLE: Service and Maintenance Manual
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-SERVICE
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS: ENG-0001-PROJECT ENG-0001-REQ ENG-0001-DESIGN ENG-0001-ATP ENG-0001-CAL ENG-0001-RISK ENG-0001-INSTALL
+#+STARTUP: overview
+
+* Preventive Maintenance
+
+** Inspect protective functions
+:PROPERTIES:
+:CUSTOM_ID: SVC-SAFE-001
+:STATUS: DRAFT
+:TASK_TYPE: INSPECTION
+:OWNER: Service Engineering
+:SKILL_LEVEL: QUALIFIED TECHNICIAN
+:INTERVAL_DAYS: 180
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:HAZARDS: HAZ-MECH-001
+:EQUIPMENT: EQ-DMM-001
+:ACCEPTANCE_CRITERIA: Protective functions operate correctly with no bypass or unresolved fault.
+:END:
+
+Isolate hazardous energy, inspect safeguards, exercise each protective
+function, and retain observations and evidence.
+
+** Verify mechanical condition
+:PROPERTIES:
+:CUSTOM_ID: SVC-MECH-001
+:STATUS: DRAFT
+:TASK_TYPE: PREVENTIVE
+:OWNER: Mechanical Engineering
+:SKILL_LEVEL: QUALIFIED TECHNICIAN
+:INTERVAL_DAYS: 365
+:REQUIREMENTS: REQ-PERF-001
+:DESIGN_ITEMS: DES-MECH-001
+:HAZARDS: HAZ-PERF-001
+:EQUIPMENT: EQ-DIM-001
+:ACCEPTANCE_CRITERIA: Critical mechanical conditions remain within approved limits.
+:END:
+
+Inspect wear, alignment, fasteners, and critical dimensions and document the
+as-left condition.

@@ -17,24 +17,6 @@
    (or load-file-name buffer-file-name))
   "Directory containing the project document implementation.")
 
-(defun engdoc-project--run-python (python script input output)
-  "Run SCRIPT with INPUT and OUTPUT, raising an error on failure."
-  (let ((log-buffer (get-buffer-create "*engdoc-export*")))
-    (with-current-buffer log-buffer
-      (goto-char (point-max))
-      (insert (format "\nRunning %s\n" script)))
-
-    (let ((status
-           (process-file python nil log-buffer nil
-                         script input output)))
-
-      (unless (and (integerp status) (zerop status))
-        (display-buffer log-buffer)
-        (error "Export failed: %s (exit status %s); see *engdoc-export*"
-               (file-name-nondirectory script)
-               status)))))
-
-
 (defun engdoc-project-export (&optional file)
   "Export project HTML, BOM, schedule, and agenda for FILE."
   (interactive)
@@ -46,10 +28,15 @@
     (with-current-buffer (find-file-noselect file)
       (save-buffer))
 
-    (let* ((python (engdoc-python))
-           (project-file (expand-file-name file))
+    (let* ((project-file (expand-file-name file))
            (project-dir (file-name-directory project-file))
            (export-dir (engdoc-export-directory project-file))
+           (bom-format (engdoc-read-keyword project-file
+                                             "ENGDOC_BOM_FORMAT" "default"))
+
+           (validator-script
+            (expand-file-name "validate_project.py"
+                              engdoc-project-directory))
 
            (bom-script
             (expand-file-name "export_bom.py"
@@ -59,41 +46,34 @@
             (expand-file-name "export_schedule.py"
                               engdoc-project-directory))
 
-           (bom-output
-            (expand-file-name "bom.xlsx" export-dir))
+           (outputs '("bom.xlsx" "schedule.xlsx"
+                      "agenda.html" "project.html")))
 
-           (schedule-output
-            (expand-file-name "schedule.xlsx" export-dir))
+      ;; Validation happens before the transaction creates any artifacts.
+      (engdoc-run-python validator-script (list project-file)
+                         "Validating project")
 
-           (agenda-output
-            (expand-file-name "agenda.html" export-dir))
-
-           (html-output
-            (expand-file-name "project.html" export-dir)))
-
-      (let ((default-directory project-dir))
-
-        ;; Org exports
-        (engdoc-project-export-agenda
-         project-file agenda-output)
-
-        (engdoc-project-export-html
-         project-file html-output)
-
-        ;; Python exports: synchronous and failure-aware
-        (engdoc-project--run-python
-         python bom-script project-file bom-output)
-
-        (engdoc-project--run-python
-         python schedule-script project-file schedule-output))
-
-      ;; Verify that all expected files exist.
-      (dolist (output (list bom-output
-                            schedule-output
-                            agenda-output
-                            html-output))
-        (unless (file-exists-p output)
-          (error "Expected export missing: %s" output)))
+      (engdoc-with-export-transaction
+       export-dir outputs
+       (lambda (staging-directory)
+         (let ((default-directory project-dir)
+               (bom-output (expand-file-name "bom.xlsx" staging-directory))
+               (schedule-output
+                (expand-file-name "schedule.xlsx" staging-directory))
+               (agenda-output
+                (expand-file-name "agenda.html" staging-directory))
+               (html-output
+                (expand-file-name "project.html" staging-directory)))
+           (engdoc-project-export-agenda project-file agenda-output)
+           (engdoc-project-export-html project-file html-output)
+           (engdoc-run-python
+            bom-script
+            (append (engdoc-format-arguments project-file "BOM" bom-format)
+                    (list project-file bom-output))
+            (format "Exporting BOM (%s format)" bom-format))
+           (engdoc-run-python
+            schedule-script (list project-file schedule-output)
+            "Exporting schedule"))))
 
       (message "Project export complete: %s" export-dir))))
 

@@ -1,0 +1,101 @@
+#+TITLE: Engineering Design Description
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-DESIGN
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS:
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:t
+
+# PURPOSE
+#   Describe the engineering design, its decisions, interfaces, calculations,
+#   and relationship to controlled requirements.
+#
+# DESIGN ITEM FORMAT
+#   ** Descriptive design item
+#   :PROPERTIES:
+#   :CUSTOM_ID: DES-SYS-001
+#   :STATUS: DRAFT
+#   :OWNER: Systems Engineering
+#   :REQUIREMENTS: REQ-SYS-001 REQ-PERF-001
+#   :END:
+#
+#   Explain the design decision and its engineering rationale. Reference
+#   calculations, drawings, models, risks, and interfaces where applicable.
+#
+# STATUS VALUES
+#   DRAFT       Design work is incomplete.
+#   REVIEW      Ready for technical review.
+#   APPROVED    Accepted as the current design basis.
+#   SUPERSEDED  Retained for history but no longer current.
+#
+# VALIDATION
+#   CUSTOM_ID must be unique and begin with DES-. STATUS and OWNER are
+#   required. Missing REQUIREMENTS links produce a warning. When a
+#   requirements document is present, unknown requirement IDs are fatal.
+#
+# EXPORTS
+#   exports/design.pdf
+#   exports/design.tex
+#   exports/design.xlsx
+
+* Document Information
+
+The controlled document identity is defined by the =#+ENGDOC_*= keywords at
+the top of this file.
+
+* Design Overview
+
+Describe the system architecture, design boundaries, assumptions, and major
+engineering constraints.
+
+* System Architecture
+
+** Control architecture
+:PROPERTIES:
+:CUSTOM_ID: DES-SYS-001
+:STATUS: DRAFT
+:OWNER: Systems Engineering
+:REQUIREMENTS: REQ-SYS-001
+:END:
+
+Describe the selected control architecture and the rationale for the decision.
+
+* Mechanical Design
+
+** Mechanical arrangement
+:PROPERTIES:
+:CUSTOM_ID: DES-MECH-001
+:STATUS: DRAFT
+:OWNER: Mechanical Engineering
+:REQUIREMENTS: REQ-PERF-001
+:END:
+
+Describe the mechanical arrangement, critical interfaces, and calculations.
+
+* Electrical Design
+
+** Electrical architecture
+:PROPERTIES:
+:CUSTOM_ID: DES-ELEC-001
+:STATUS: DRAFT
+:OWNER: Electrical Engineering
+:REQUIREMENTS: REQ-INST-001
+:END:
+
+Describe power distribution, controls, protection, and external interfaces.
+
+* Interfaces
+
+Document mechanical, electrical, software, facility, and operator interfaces.
+
+* Engineering Analyses
+
+Reference calculations, simulations, tolerance analyses, and risk assessments.
+
+* References
+
+List controlled drawings, calculations, standards, and external references.

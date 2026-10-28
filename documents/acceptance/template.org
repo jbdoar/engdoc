@@ -1,0 +1,106 @@
+#+TITLE: Acceptance Test Procedure
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-ATP
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS:
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:t
+
+# PURPOSE
+#   Define controlled acceptance procedures and their objective criteria.
+#
+# RECORD PRESERVATION
+#   acceptance.org and exports/ are controlled procedure sources/templates.
+#   Generated acceptance.xlsx contains blank execution sheets and is replaced
+#   on export. Before execution, save a uniquely named copy beneath records/.
+#   Never store completed results or evidence in exports/.
+#
+# PROCEDURE FORMAT
+#   ** Descriptive procedure title
+#   :PROPERTIES:
+#   :CUSTOM_ID: ATP-SYS-001
+#   :STATUS: DRAFT
+#   :OWNER: Test Engineering
+#   :STAGES: FAT SAT
+#   :REQUIREMENTS: REQ-SYS-001
+#   :DESIGN_ITEMS: DES-SYS-001
+#   :EQUIPMENT: EQ-DMM-001
+#   :ACCEPTANCE_CRITERIA: The startup sequence completes within 30 seconds.
+#   :END:
+#
+#   Describe setup, preconditions, test actions, measurements, and evidence.
+#
+# STATUS: DRAFT, REVIEW, APPROVED, or RETIRED.
+# STAGES: FAT, SAT, and/or COMMISSIONING.
+#
+# EXPORTS
+#   exports/acceptance.pdf
+#   exports/acceptance.tex
+#   exports/acceptance.xlsx
+
+* Document Information
+
+The controlled document identity is defined by the =#+ENGDOC_*= keywords at
+the top of this file.
+
+* General Instructions
+
+Record calibrated equipment, configuration, environmental conditions, and
+evidence references in the preserved execution workbook. Deviations require a
+clear disposition and approval before acceptance.
+
+* Functional Acceptance
+
+** Startup sequence test
+:PROPERTIES:
+:CUSTOM_ID: ATP-SYS-001
+:STATUS: DRAFT
+:OWNER: Test Engineering
+:STAGES: FAT SAT
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:EQUIPMENT: EQ-DMM-001
+:ACCEPTANCE_CRITERIA: The system completes startup within 30 seconds without faults.
+:END:
+
+Configure the system in its approved baseline configuration. Initiate startup,
+measure elapsed time, record observed states, and retain the event log as
+evidence.
+
+* Installation Acceptance
+
+** Installation conformance inspection
+:PROPERTIES:
+:CUSTOM_ID: ATP-INST-001
+:STATUS: DRAFT
+:OWNER: Field Engineering
+:STAGES: SAT
+:REQUIREMENTS: REQ-INST-001
+:DESIGN_ITEMS: DES-ELEC-001
+:EQUIPMENT: EQ-DMM-001
+:ACCEPTANCE_CRITERIA: All installed interfaces conform to approved drawings and are labeled.
+:END:
+
+Inspect mechanical, electrical, facility, and safety interfaces against the
+approved installation package. Record discrepancies and photographic evidence.
+
+* Performance Acceptance
+
+** Performance verification
+:PROPERTIES:
+:CUSTOM_ID: ATP-PERF-001
+:STATUS: DRAFT
+:OWNER: Test Engineering
+:STAGES: FAT SAT
+:REQUIREMENTS: REQ-PERF-001
+:DESIGN_ITEMS: DES-MECH-001
+:EQUIPMENT: EQ-DMM-001 EQ-DIM-001
+:ACCEPTANCE_CRITERIA: Measured performance satisfies every specified limit.
+:END:
+
+Operate the system through the defined performance test points. Record measured
+values, uncertainty, applicable limits, and evidence references.

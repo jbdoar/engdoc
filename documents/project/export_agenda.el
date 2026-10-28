@@ -4,6 +4,7 @@
 (require 'org-agenda)
 (require 'subr-x)
 (require 'calendar)
+(require 'xml)
 
 (defun engdoc-project-planning-date-range ()
   "Return (START . SPAN) covering all planning dates in current file."
@@ -11,7 +12,7 @@
     (org-map-entries
      (lambda ()
        (dolist (property '("SCHEDULED" "DEADLINE"))
-         (when-let ((value (org-entry-get nil property)))
+        (when-let* ((value (org-entry-get nil property)))
            (when (string-match
                   "[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}"
                   value)
@@ -47,8 +48,23 @@
                  (alltodo ""))))))
 
         (org-agenda nil "P")
-        (org-agenda-write output)
-        (kill-buffer (current-buffer))))))
+        (let* ((agenda-buffer (current-buffer))
+               (agenda-text
+                (with-current-buffer agenda-buffer
+                  (buffer-substring-no-properties (point-min) (point-max))))
+               (html
+                (concat
+                 "<!doctype html>\n<html><head><meta charset=\"utf-8\">\n"
+                 "<title>Project agenda</title>\n"
+                 "<style>body{font-family:monospace;margin:2rem}"
+                 "pre{white-space:pre-wrap}</style></head><body>\n"
+                 "<h1>Project agenda</h1><pre>"
+                 (xml-escape-string agenda-text)
+                 "</pre></body></html>\n")))
+          (with-temp-buffer
+            (insert html)
+            (write-region (point-min) (point-max) output nil 'silent))
+          (kill-buffer agenda-buffer))))))
 
 (provide 'export_agenda)
 

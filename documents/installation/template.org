@@ -1,0 +1,119 @@
+#+TITLE: Installation and Commissioning Plan
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-INSTALL
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS:
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:t
+
+# PURPOSE
+#   Control site readiness, receiving, installation, commissioning, punch-list,
+#   and handover activities.
+#
+# RECORD PRESERVATION
+#   Generated installation.xlsx is a blank execution template. Save completed
+#   site records beneath records/installation/. Export never modifies records/.
+#
+# ACTIVITY FORMAT
+#   ** Verify incoming equipment condition
+#   :PROPERTIES:
+#   :CUSTOM_ID: INS-RECV-001
+#   :STATUS: DRAFT
+#   :OWNER: Field Engineering
+#   :PHASE: RECEIVING
+#   :REQUIREMENTS: REQ-INST-001
+#   :DESIGN_ITEMS: DES-ELEC-001
+#   :HAZARDS: HAZ-ELEC-001
+#   :ACCEPTANCE_PROCEDURES: ATP-INST-001
+#   :EQUIPMENT: EQ-DMM-001
+#   :ACCEPTANCE_CRITERIA: No shipping damage or missing items are present.
+#   :END:
+#
+# STATUS: DRAFT, READY, COMPLETE, or BLOCKED.
+# PHASE: SITE, RECEIVING, INSTALLATION, COMMISSIONING, or HANDOVER.
+#
+# EXPORTS: installation.pdf, installation.tex, installation.xlsx
+
+* Document Information
+
+The controlled document identity is defined by the =#+ENGDOC_*= keywords at
+the top of this file.
+
+* Site Readiness
+
+** Verify site utilities and access
+:PROPERTIES:
+:CUSTOM_ID: INS-SITE-001
+:STATUS: DRAFT
+:OWNER: Field Engineering
+:PHASE: SITE
+:REQUIREMENTS: REQ-INST-001
+:DESIGN_ITEMS: DES-MECH-001
+:HAZARDS: HAZ-ELEC-001
+:ACCEPTANCE_PROCEDURES: ATP-INST-001
+:EQUIPMENT: EQ-DMM-001
+:ACCEPTANCE_CRITERIA: Utilities, access, environmental conditions, and safety provisions match approved requirements.
+:END:
+
+Inspect the site against approved installation drawings and readiness criteria.
+
+* Installation
+
+** Verify installed interfaces
+:PROPERTIES:
+:CUSTOM_ID: INS-INST-001
+:STATUS: DRAFT
+:OWNER: Field Engineering
+:PHASE: INSTALLATION
+:REQUIREMENTS: REQ-INST-001
+:DESIGN_ITEMS: DES-ELEC-001
+:HAZARDS: HAZ-ELEC-001
+:ACCEPTANCE_PROCEDURES: ATP-INST-001
+:EQUIPMENT: EQ-DMM-001
+:ACCEPTANCE_CRITERIA: All interfaces conform to approved drawings and pass pre-energization checks.
+:END:
+
+Inspect mechanical and electrical interfaces, labeling, protection, grounding,
+and configuration before energization.
+
+* Commissioning
+
+** Execute controlled startup
+:PROPERTIES:
+:CUSTOM_ID: INS-COMM-001
+:STATUS: DRAFT
+:OWNER: Commissioning Engineering
+:PHASE: COMMISSIONING
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:HAZARDS: HAZ-MECH-001
+:ACCEPTANCE_PROCEDURES: ATP-SYS-001
+:EQUIPMENT: EQ-DMM-001
+:ACCEPTANCE_CRITERIA: Startup completes without faults and all protective functions remain effective.
+:END:
+
+Execute the approved startup sequence, capture configuration and evidence, and
+record all deviations on the preserved commissioning record.
+
+* Handover
+
+** Complete customer handover
+:PROPERTIES:
+:CUSTOM_ID: INS-HAND-001
+:STATUS: DRAFT
+:OWNER: Project Management
+:PHASE: HANDOVER
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:HAZARDS: HAZ-MECH-001
+:ACCEPTANCE_PROCEDURES: ATP-SYS-001
+:EQUIPMENT: EQ-DMM-001
+:ACCEPTANCE_CRITERIA: Required records, training, open-item dispositions, and approvals are complete.
+:END:
+
+Transfer the approved documentation package, preserved records, training
+evidence, spares, and remaining action ownership.

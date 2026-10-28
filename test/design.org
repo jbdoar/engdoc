@@ -1,0 +1,37 @@
+#+TITLE: Engineering Design Description
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-DESIGN
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS: ENG-0001-PROJECT ENG-0001-REQ ENG-0001-ATP ENG-0001-CAL ENG-0001-RISK
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:t
+
+* System Architecture
+
+** Control architecture
+:PROPERTIES:
+:CUSTOM_ID: DES-SYS-001
+:STATUS: REVIEW
+:OWNER: Systems Engineering
+:REQUIREMENTS: REQ-SYS-001 REQ-PERF-001
+:END:
+
+The design uses a modular control architecture with defined subsystem
+interfaces and deterministic startup sequencing.
+
+* Mechanical Design
+
+** Mechanical arrangement
+:PROPERTIES:
+:CUSTOM_ID: DES-MECH-001
+:STATUS: DRAFT
+:OWNER: Mechanical Engineering
+:REQUIREMENTS: REQ-INST-001
+:END:
+
+The mechanical arrangement provides controlled alignment and accessible
+installation interfaces.

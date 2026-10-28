@@ -1,0 +1,115 @@
+#+TITLE: Risk and Hazard Analysis
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-RISK
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS:
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:t
+
+# PURPOSE
+#   Identify hazards, evaluate initial and residual risk, and trace mitigations
+#   through requirements, design controls, and acceptance procedures.
+#
+# HAZARD FORMAT
+#   ** Unexpected motion
+#   :PROPERTIES:
+#   :CUSTOM_ID: HAZ-MECH-001
+#   :STATUS: OPEN
+#   :OWNER: Safety Engineering
+#   :SEVERITY: 4
+#   :LIKELIHOOD: 3
+#   :RESIDUAL_SEVERITY: 4
+#   :RESIDUAL_LIKELIHOOD: 1
+#   :REQUIREMENTS: REQ-SAFE-001
+#   :DESIGN_ITEMS: DES-SAFE-001
+#   :ACCEPTANCE_PROCEDURES: ATP-SAFE-001
+#   :END:
+#
+#   Describe the hazard, causes, consequences, exposure, safeguards, and any
+#   assumptions supporting the residual-risk estimate.
+#
+# STATUS: OPEN, MITIGATED, ACCEPTED, or CLOSED.
+# SEVERITY and LIKELIHOOD use integer scales from 1 (lowest) to 5 (highest).
+# Risk score is severity multiplied by likelihood. Residual risk may not exceed
+# initial risk without an explicit redesign of the hazard assessment.
+#
+# EXPORTS
+#   exports/risk.pdf
+#   exports/risk.tex
+#   exports/risk.xlsx
+
+* Document Information
+
+The controlled document identity is defined by the =#+ENGDOC_*= keywords at
+the top of this file.
+
+* Risk Method
+
+Score each hazard using the approved five-by-five severity and likelihood
+matrix. Record controls as controlled requirements, design items, and objective
+acceptance procedures. Acceptance of residual risk requires documented owner
+approval outside this generated analysis.
+
+* Mechanical Hazards
+
+** Unexpected mechanical motion
+:PROPERTIES:
+:CUSTOM_ID: HAZ-MECH-001
+:STATUS: OPEN
+:OWNER: Safety Engineering
+:SEVERITY: 4
+:LIKELIHOOD: 3
+:RESIDUAL_SEVERITY: 4
+:RESIDUAL_LIKELIHOOD: 1
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:ACCEPTANCE_PROCEDURES: ATP-SYS-001
+:END:
+
+Unexpected motion could expose personnel or equipment to impact or pinch
+hazards. Controls include deterministic startup, guarded operating states,
+fault handling, and verification of the approved startup sequence.
+
+* Electrical Hazards
+
+** Incorrect installation connection
+:PROPERTIES:
+:CUSTOM_ID: HAZ-ELEC-001
+:STATUS: MITIGATED
+:OWNER: Electrical Engineering
+:SEVERITY: 4
+:LIKELIHOOD: 2
+:RESIDUAL_SEVERITY: 4
+:RESIDUAL_LIKELIHOOD: 1
+:REQUIREMENTS: REQ-INST-001
+:DESIGN_ITEMS: DES-ELEC-001
+:ACCEPTANCE_PROCEDURES: ATP-INST-001
+:END:
+
+Incorrect field connections could damage equipment or expose personnel to
+electrical energy. Controls include keyed interfaces, labeling, approved
+drawings, inspection, and installation acceptance testing.
+
+* Performance and Process Hazards
+
+** Undetected performance deviation
+:PROPERTIES:
+:CUSTOM_ID: HAZ-PERF-001
+:STATUS: MITIGATED
+:OWNER: Systems Engineering
+:SEVERITY: 3
+:LIKELIHOOD: 3
+:RESIDUAL_SEVERITY: 3
+:RESIDUAL_LIKELIHOOD: 1
+:REQUIREMENTS: REQ-PERF-001
+:DESIGN_ITEMS: DES-MECH-001
+:ACCEPTANCE_PROCEDURES: ATP-PERF-001
+:END:
+
+An undetected performance deviation could produce invalid output or downstream
+process loss. Controls include measurable limits, calibrated equipment, and
+repeatable FAT and SAT verification.

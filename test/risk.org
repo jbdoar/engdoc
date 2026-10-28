@@ -1,0 +1,48 @@
+#+TITLE: Risk and Hazard Analysis
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-RISK
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS: ENG-0001-PROJECT ENG-0001-REQ ENG-0001-DESIGN ENG-0001-ATP ENG-0001-CAL
+#+STARTUP: overview
+
+* Mechanical Hazards
+
+** Unexpected motion
+:PROPERTIES:
+:CUSTOM_ID: HAZ-MECH-001
+:STATUS: OPEN
+:OWNER: Safety Engineering
+:SEVERITY: 4
+:LIKELIHOOD: 3
+:RESIDUAL_SEVERITY: 4
+:RESIDUAL_LIKELIHOOD: 1
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:ACCEPTANCE_PROCEDURES: ATP-SYS-001
+:END:
+
+Unexpected motion could expose personnel to impact or pinch hazards. Controls
+include deterministic startup and objective acceptance testing.
+
+* Process Hazards
+
+** Undetected performance deviation
+:PROPERTIES:
+:CUSTOM_ID: HAZ-PERF-001
+:STATUS: MITIGATED
+:OWNER: Systems Engineering
+:SEVERITY: 3
+:LIKELIHOOD: 3
+:RESIDUAL_SEVERITY: 3
+:RESIDUAL_LIKELIHOOD: 1
+:REQUIREMENTS: REQ-PERF-001
+:DESIGN_ITEMS: DES-MECH-001
+:ACCEPTANCE_PROCEDURES: ATP-PERF-001
+:END:
+
+Undetected deviation could produce invalid output. Controls include measurable
+limits, calibrated equipment, and repeatable performance verification.

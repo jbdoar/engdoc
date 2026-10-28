@@ -1,4 +1,14 @@
 #+TITLE: Project
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-PROJECT
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS:
+#+ENGDOC_PROFILE: default
+#+ENGDOC_BOM_FORMAT: default
 #+STARTUP: overview
 #+TODO: TODO NEXT WAITING | DONE CANCELLED
 #+PROPERTY: SOURCE_ALL BUY ON-HAND MAKE PRINT
@@ -20,10 +30,14 @@
 # - PN is the internal part number; MPN is the manufacturer part number.
 # - SOURCE identifies how a part is obtained.
 # - COST is the unit cost.
+# - QTY must be a positive integer; COST must be nonnegative when present.
+# - SOURCE, when present, must be BUY, ON-HAND, MAKE, or PRINT.
 # - TODO headings represent actionable work.
 # - Assign owners using tags such as :@name:.
 # - Use SCHEDULED and DEADLINE for planning.
+# - A DEADLINE may not precede its SCHEDULED date.
 # - Keep component-specific tasks beneath the relevant component.
+# - Link work to requirements with :REQUIREMENTS: REQ-ID REQ-ID.
 #
 # EXPORTS
 # BOM:      bom.xlsx
@@ -38,11 +52,8 @@
 
 * Project Information
 
-Project name:
-Project number:
-Revision:
-Project manager:
-Customer:
+The controlled document identity is defined by the =#+ENGDOC_*= keywords at
+the top of this file. Add customer and contract-specific information here.
 
 ** Scope
 

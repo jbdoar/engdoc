@@ -1,4 +1,12 @@
 #+TITLE: Project
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-PROJECT
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS: ENG-0001-REQ ENG-0001-DESIGN ENG-0001-ATP ENG-0001-CAL ENG-0001-RISK
 #+STARTUP: overview
 #+TODO: TODO NEXT WAITING | DONE CANCELLED
 #+PROPERTY: SOURCE_ALL BUY ON-HAND MAKE PRINT
@@ -38,11 +46,8 @@
 
 * Project Information
 
-Project name:
-Project number:
-Revision:
-Project manager:
-Customer:
+The controlled document identity is defined by the =#+ENGDOC_*= keywords at
+the top of this file. Add customer and contract-specific information here.
 
 ** Scope
 
@@ -76,8 +81,14 @@ Describe the system and the work covered by this project.
 * System Integration
 
 ** TODO Assembly
+:PROPERTIES:
+:REQUIREMENTS: REQ-SYS-001 REQ-INST-001
+:END:
 
 ** TODO Alignment
+:PROPERTIES:
+:REQUIREMENTS: REQ-PERF-001
+:END:
 
 ** TODO Testing
 

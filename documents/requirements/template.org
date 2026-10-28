@@ -1,5 +1,13 @@
 #+TITLE: System Requirements
 #+SUBTITLE: Requirements Specification
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-REQ
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS:
 #+STARTUP: overview
 #+OPTIONS: toc:2 num:t
 
@@ -62,6 +70,9 @@
 #     Include measurable limits, tolerances, or references where
 #     applicable. Missing criteria produce a warning.
 #
+#   Downstream project/design/test headings reference requirements with a
+#   space- or comma-separated :REQUIREMENTS: property.
+#
 # WRITING REQUIREMENTS
 #   - State one independently verifiable requirement per heading.
 #   - Use clear, unambiguous language.
@@ -92,12 +103,8 @@
 
 * Document Information
 
-| Field    | Value |
-|----------+-------|
-| Project  |       |
-| Revision | A     |
-| Date     |       |
-| Author   |       |
+The controlled document identity is defined by the =#+ENGDOC_*= keywords at
+the top of this file.
 
 * Introduction
 
@@ -144,8 +151,9 @@ The system shall meet its specified performance limits.
 
 ** System operation
 :PROPERTIES:
-:CUSTOM_ID: REQ-SYS-001
+:CUSTOM_ID: REQ-SYS-002
 :VERIFY_METHOD: TEST
+:VERIFY_STAGE: FAT SAT
 :ACCEPTANCE_CRITERIA: System completes startup within 30 seconds.
 :END:
 
@@ -155,8 +163,10 @@ The system shall complete startup within 30 seconds.
 
 ** Measurement performance
 :PROPERTIES:
-:CUSTOM_ID: REQ-PERF-001
+:CUSTOM_ID: REQ-PERF-002
 :VERIFY_METHOD: TEST
+:VERIFY_STAGE: NONE
+:ACCEPTANCE_CRITERIA: Define an objective performance limit.
 :END:
 
 The system shall ...

@@ -1,0 +1,114 @@
+#+TITLE: Calibration Program
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-CAL
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS:
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:t
+
+# PURPOSE
+#   Control measuring equipment, calibration intervals, procedures, and
+#   traceability to reference standards.
+#
+# RECORD PRESERVATION
+#   calibration.org and exports/calibration.xlsx define the program and blank
+#   execution template. Preserve completed calibrations and certificates under
+#   records/calibration/. Export never modifies records/.
+#
+# EQUIPMENT FORMAT
+#   ** Digital multimeter
+#   :PROPERTIES:
+#   :CUSTOM_ID: EQ-DMM-001
+#   :STATUS: ACTIVE
+#   :OWNER: Test Engineering
+#   :MANUFACTURER: Example Instruments
+#   :MODEL: DMM-1000
+#   :SERIAL: SN-001
+#   :RANGE: 0 to 1000 V
+#   :ACCURACY: +/- 0.05 percent
+#   :INTERVAL_DAYS: 365
+#   :CALIBRATION_DUE: 2099-12-31
+#   :REFERENCE_STANDARDS: EQ-STD-001
+#   :END:
+#
+# STATUS: ACTIVE, OUT-OF-SERVICE, or RETIRED.
+# ACTIVE equipment requires a future or current calibration due date.
+# Reference standards must be other controlled EQ-* items and may not form a
+# cycle.
+#
+# EXPORTS
+#   exports/calibration.pdf
+#   exports/calibration.tex
+#   exports/calibration.xlsx
+
+* Document Information
+
+The controlled document identity is defined by the =#+ENGDOC_*= keywords at
+the top of this file.
+
+* Calibration Policy
+
+Only equipment with current calibration status may be used for acceptance
+measurements. Preserve certificates, as-found data, adjustments, and as-left
+data with the completed calibration record.
+
+* Reference Standards
+
+** Electrical reference standard
+:PROPERTIES:
+:CUSTOM_ID: EQ-STD-001
+:STATUS: ACTIVE
+:OWNER: Quality Engineering
+:MANUFACTURER: Reference Standards Laboratory
+:MODEL: REF-100
+:SERIAL: REF-001
+:RANGE: Electrical reference outputs
+:ACCURACY: Suitable for a minimum 4:1 test uncertainty ratio
+:INTERVAL_DAYS: 365
+:CALIBRATION_DUE: 2099-12-31
+:REFERENCE_STANDARDS:
+:END:
+
+Calibrate through an accredited laboratory with traceability to applicable
+national or international standards.
+
+* Measuring Equipment
+
+** Digital multimeter
+:PROPERTIES:
+:CUSTOM_ID: EQ-DMM-001
+:STATUS: ACTIVE
+:OWNER: Test Engineering
+:MANUFACTURER: Example Instruments
+:MODEL: DMM-1000
+:SERIAL: DMM-001
+:RANGE: 0 to 1000 V
+:ACCURACY: +/- 0.05 percent
+:INTERVAL_DAYS: 365
+:CALIBRATION_DUE: 2099-12-31
+:REFERENCE_STANDARDS: EQ-STD-001
+:END:
+
+Inspect the instrument, verify all specified ranges against the controlled
+reference standard, and record as-found and as-left results.
+
+** Dimensional measurement instrument
+:PROPERTIES:
+:CUSTOM_ID: EQ-DIM-001
+:STATUS: ACTIVE
+:OWNER: Mechanical Engineering
+:MANUFACTURER: Example Metrology
+:MODEL: DIM-100
+:SERIAL: DIM-001
+:RANGE: 0 to 150 mm
+:ACCURACY: +/- 0.02 mm
+:INTERVAL_DAYS: 365
+:CALIBRATION_DUE: 2099-12-31
+:REFERENCE_STANDARDS: EQ-STD-001
+:END:
+
+Inspect and verify the instrument at representative points across its range.

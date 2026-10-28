@@ -3,42 +3,37 @@
 
 import argparse
 import re
+import sys
 from pathlib import Path
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from engdoc_org import read_headings
+from engdoc_metadata import apply_workbook_metadata, load_and_validate_metadata
 
-HEADING = re.compile(r"^(\*+)\s+(.*)$")
-PROPERTY = re.compile(r"^:([A-Za-z_][A-Za-z0-9_-]*):\s*(.*?)\s*$")
+
 REQUIREMENT_ID = re.compile(r"^REQ-[A-Za-z0-9-]+$")
 
 
 def parse_requirements(path):
     """Return requirements extracted from an Org file."""
-    lines = path.read_text(encoding="utf-8").splitlines()
     requirements = []
-    headings = []
-    current = None
-    in_properties = False
-
-    def finish():
-        if current is None:
-            return
-
-        props = current["properties"]
+    for heading in read_headings(path):
+        props = heading.properties
         req_id = props.get("CUSTOM_ID", "")
 
         if not req_id.startswith("REQ-"):
-            return
+            continue
 
         if not REQUIREMENT_ID.fullmatch(req_id):
             raise ValueError(f"Invalid requirement ID: {req_id}")
 
         statement = " ".join(
             line.strip()
-            for line in current["body"]
+            for line in heading.body
             if line.strip()
             and not line.lstrip().startswith("#")
             and not line.lstrip().startswith(":")
@@ -50,55 +45,11 @@ def parse_requirements(path):
         requirements.append({
             "id": req_id,
             "requirement": statement,
-            "category": current["category"],
+            "category": " / ".join(heading.path),
             "verification": props.get("VERIFY_METHOD", ""),
             "stage": props.get("VERIFY_STAGE", ""),
             "acceptance": props.get("ACCEPTANCE_CRITERIA", ""),
         })
-
-    for line in lines:
-        match = HEADING.match(line)
-
-        if match:
-            finish()
-
-            level = len(match.group(1))
-            title = match.group(2).strip()
-
-            # Discard deeper headings when returning to a higher level.
-            headings = headings[:level - 1]
-            headings.append(title)
-
-            current = {
-                "properties": {},
-                "body": [],
-                "category": " / ".join(headings[:-1]),
-            }
-            in_properties = False
-            continue
-
-        if current is None:
-            continue
-
-        stripped = line.strip()
-
-        if stripped == ":PROPERTIES:":
-            in_properties = True
-            continue
-
-        if in_properties:
-            if stripped == ":END:":
-                in_properties = False
-                continue
-
-            prop = PROPERTY.match(stripped)
-            if prop:
-                current["properties"][prop.group(1).upper()] = prop.group(2)
-            continue
-
-        current["body"].append(line)
-
-    finish()
 
     ids = [req["id"] for req in requirements]
 
@@ -197,7 +148,7 @@ def validate_requirements(requirements):
     return warnings
 
 
-def export_xlsx(requirements, output):
+def export_xlsx(requirements, output, metadata=None):
     wb = Workbook()
     ws = wb.active
     ws.title = "Requirements"
@@ -251,6 +202,9 @@ def export_xlsx(requirements, output):
     ws.page_setup.fitToWidth = 1
     ws.page_setup.fitToHeight = 0
 
+    if metadata:
+        apply_workbook_metadata(wb, metadata)
+
     output.parent.mkdir(parents=True, exist_ok=True)
     wb.save(output)
 
@@ -272,8 +226,12 @@ def main():
     if not args.validate and args.output is None:
         parser.error("output is required unless --validate is used")
 
+    metadata, metadata_warnings = load_and_validate_metadata(args.input)
     requirements = parse_requirements(args.input)
     warnings = validate_requirements(requirements)
+    for warning in metadata_warnings:
+        print(f"WARNING: metadata: {warning}", flush=True)
+    warnings += len(metadata_warnings)
 
     if args.validate:
         print(
@@ -282,7 +240,7 @@ def main():
         )
         return
 
-    export_xlsx(requirements, args.output)
+    export_xlsx(requirements, args.output, metadata)
 
     print(
         f"Exported {len(requirements)} requirements "

@@ -1,0 +1,110 @@
+#+TITLE: User Manual
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-USER
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS:
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:t
+
+# PURPOSE
+#   Provide controlled safety and operating guidance derived from approved
+#   requirements, design controls, hazards, and service boundaries.
+#
+# TOPIC FORMAT
+#   ** Normal startup
+#   :PROPERTIES:
+#   :CUSTOM_ID: USR-START-001
+#   :STATUS: DRAFT
+#   :TOPIC_TYPE: STARTUP
+#   :AUDIENCE: OPERATOR
+#   :REQUIREMENTS: REQ-SYS-001
+#   :DESIGN_ITEMS: DES-SYS-001
+#   :HAZARDS: HAZ-MECH-001
+#   :SERVICE_TASKS: SVC-SAFE-001
+#   :END:
+#
+# STATUS: DRAFT, REVIEW, APPROVED, or RETIRED.
+# TOPIC_TYPE: SAFETY, STARTUP, OPERATION, SHUTDOWN, RECOVERY, or CARE.
+# AUDIENCE: OPERATOR, SUPERVISOR, or OWNER.
+#
+# EXPORTS: user-manual.pdf, user-manual.tex, user-manual.html,
+#          user-manual.xlsx
+
+* About This Manual
+
+This manual describes intended use, limitations, safety information, normal
+operation, recovery, and operator care. Service beyond explicitly identified
+operator care must be performed by qualified service personnel.
+
+* Safety
+
+** Safety responsibilities and limitations
+:PROPERTIES:
+:CUSTOM_ID: USR-SAFE-001
+:STATUS: DRAFT
+:TOPIC_TYPE: SAFETY
+:AUDIENCE: OPERATOR
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:HAZARDS: HAZ-MECH-001
+:SERVICE_TASKS: SVC-SAFE-001
+:END:
+
+Operate only within approved limits. Do not bypass safeguards. Stop operation
+and contact qualified service personnel when protective functions, guards, or
+interfaces are damaged or behave unexpectedly.
+
+* Startup and Operation
+
+** Normal startup
+:PROPERTIES:
+:CUSTOM_ID: USR-START-001
+:STATUS: DRAFT
+:TOPIC_TYPE: STARTUP
+:AUDIENCE: OPERATOR
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:HAZARDS: HAZ-MECH-001
+:SERVICE_TASKS: SVC-DIAG-001
+:END:
+
+Inspect the system and work area, confirm all safeguards and required utilities,
+then execute the approved startup sequence. Stop if a fault or unexpected
+motion occurs.
+
+** Normal operation
+:PROPERTIES:
+:CUSTOM_ID: USR-OPER-001
+:STATUS: DRAFT
+:TOPIC_TYPE: OPERATION
+:AUDIENCE: OPERATOR
+:REQUIREMENTS: REQ-PERF-001
+:DESIGN_ITEMS: DES-MECH-001
+:HAZARDS: HAZ-PERF-001
+:SERVICE_TASKS: SVC-MECH-001
+:END:
+
+Monitor system status and output for deviations. Maintain the approved work
+area and do not exceed specified operating limits.
+
+* Shutdown and Recovery
+
+** Controlled shutdown and fault response
+:PROPERTIES:
+:CUSTOM_ID: USR-STOP-001
+:STATUS: DRAFT
+:TOPIC_TYPE: RECOVERY
+:AUDIENCE: OPERATOR
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:HAZARDS: HAZ-MECH-001
+:SERVICE_TASKS: SVC-DIAG-001
+:END:
+
+Use controlled shutdown for normal stops. After a fault, place the system in a
+safe state, preserve fault information, and obtain qualified assistance before
+restart when the cause is not understood.

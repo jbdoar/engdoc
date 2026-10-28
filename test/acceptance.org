@@ -1,0 +1,45 @@
+#+TITLE: Acceptance Test Procedure
+#+AUTHOR: Engineering Team
+#+ENGDOC_PROJECT_NAME: Engineering Project
+#+ENGDOC_PROJECT_ID: ENG-0001
+#+ENGDOC_DOCUMENT_ID: ENG-0001-ATP
+#+ENGDOC_REVISION: A
+#+ENGDOC_STATUS: DRAFT
+#+ENGDOC_ISSUE_DATE:
+#+ENGDOC_RELATED_DOCUMENTS: ENG-0001-PROJECT ENG-0001-REQ ENG-0001-DESIGN ENG-0001-CAL ENG-0001-RISK
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:t
+
+* Functional Acceptance
+
+** Startup sequence test
+:PROPERTIES:
+:CUSTOM_ID: ATP-SYS-001
+:STATUS: REVIEW
+:OWNER: Test Engineering
+:STAGES: FAT SAT
+:REQUIREMENTS: REQ-SYS-001
+:DESIGN_ITEMS: DES-SYS-001
+:EQUIPMENT: EQ-DMM-001
+:ACCEPTANCE_CRITERIA: Startup completes within 30 seconds without faults.
+:END:
+
+Configure the approved system baseline, initiate startup, measure elapsed time,
+and retain the controller event log.
+
+* Performance Acceptance
+
+** Performance verification
+:PROPERTIES:
+:CUSTOM_ID: ATP-PERF-001
+:STATUS: DRAFT
+:OWNER: Test Engineering
+:STAGES: FAT SAT
+:REQUIREMENTS: REQ-PERF-001
+:DESIGN_ITEMS: DES-MECH-001
+:EQUIPMENT: EQ-DIM-001
+:ACCEPTANCE_CRITERIA: Measured performance satisfies every specified limit.
+:END:
+
+Operate the system at the defined test points and record values, uncertainty,
+limits, and evidence references.
